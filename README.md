@@ -1,4 +1,4 @@
-# Data collection and distribution
+# Fault tolerant data collection and distribution
 ### Abstract
 Purpose of this project is to simulate a device which at random period writes data to the file while some other service collects this data and transmits it over http to the server. Data generating service must group data into files. Data collecting service must distribute available data every one minute. Files containing data that was already distributed shall be removed from the filesystem.
 
@@ -56,6 +56,6 @@ Project root folder and `test_server` contains Dockerfile which can be used to b
     $ docker-compose up
     
 ### Additional implementation notes
-Current implementation performs blocking IO for both file system access and http requests, this is a subject for further improvements.
-Parameter `--dist-interval` is not very meaningful because files containing data are created every 1min, this concept probably has to be reconsidered.
-
+* Current implementation performs blocking IO for both file system access and http requests, this is a subject for further improvements.
+* Parameter `--dist-interval` is not very meaningful because files containing data are created every 1min, this concept probably has to be reconsidered.
+* Automated tests are missing.
