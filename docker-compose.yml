@@ -1,0 +1,23 @@
+version: "2.0"
+services:
+  dc_client:
+    build: .
+    environment:
+      - HOST=10.0.16.10
+      - PORT=8889
+      - LOG_DIR_PATH=/var/lib/dc/logs
+      - TMP_PERSIST_DIR=/var/lib/dc/persist
+    volumes:
+      - dc_client_vol:/var/lib/dc
+  dc_server:
+    build: test_server/
+    environment:
+      - PORT=8889
+      - LOG_DIR_PATH=/var/lib/dc/logs
+    ports:
+      - "8889:8889"
+    volumes:
+      - dc_server_vol:/var/lib/dc
+volumes:
+  dc_client_vol:
+  dc_server_vol:
